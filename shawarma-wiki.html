@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Scary Shawarma Kiosk — Unofficial Wiki</title>
+  <style>
+    :root {
+      --bg: #0d0f12;
+      --panel: #141820;
+      --accent: #ffcc66;
+      --accent-2: #66d9ef;
+      --text: #e8edf2;
+      --muted: #9aa7b2;
+      --danger: #ff6b6b;
+      --safe: #61d095;
+      --special: #c792ea;
+      --env: #8aa2af;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+    a { color: var(--accent-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Top navigation */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: linear-gradient(180deg, #0d0f12 0%, #0d0f12cc 100%);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid #1f2430;
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .brand {
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.2px;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-left: auto;
+    }
+    .nav-links a {
+      padding: 8px 10px;
+      border-radius: 8px;
+      color: var(--text);
+      transition: background 0.2s ease-in-out;
+    }
+    .nav-links a:hover {
+      background: #1a1f29;
+    }
+
+    /* Layout */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 18px 60px;
+    }
+
+    /* Sections */
+    section {
+      margin: 22px 0 28px;
+      background: var(--panel);
+      border: 1px solid #1f2430;
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    }
+    section h2 {
+      margin: 0 0 10px;
+      font-size: 1.6rem;
+      letter-spacing: 0.2px;
+    }
+    section p {
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 8px 0 0;
+    }
+
+    /* Grid cards */
+    .grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(1, 1fr);
+    }
+    @media (min-width: 720px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 960px) {
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .card {
+      background: #161b25;
+      border: 1px solid #232a36;
+      border-radius: 14px;
+      padding: 16px;
+    }
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+    }
+    .pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+    .pill-danger { background: rgba(255, 107, 107, 0.15); color: var(--danger); border: 1px solid rgba(255, 107, 107, 0.35); }
+    .pill-safe   { background: rgba(97, 208, 149, 0.15); color: var(--safe); border: 1px solid rgba(97, 208, 149, 0.35); }
+    .pill-special{ background: rgba(199, 146, 234, 0.15); color: var(--special); border: 1px solid rgba(199, 146, 234, 0.35); }
+    .pill-env    { background: rgba(138, 162, 175, 0.15); color: var(--env); border: 1px solid rgba(138, 162, 175, 0.35); }
+    .list {
+      margin: 8px 0 0;
+      padding-left: 18px;
+    }
+    .list li {
+      margin: 6px 0;
+      color: var(--text);
+    }
+    .list li span {
+      display: inline-block;
+      font-weight: 700;
+      margin-right: 6px;
+      color: var(--muted);
+    }
+
+    /* Footer */
+    footer {
+      margin: 24px 0 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 24px 22px;
+      background: linear-gradient(180deg, #151a24 0%, #12161f 100%);
+      border: 1px solid #222938;
+      border-radius: 16px;
+      margin-bottom: 22px;
+    }
+    .hero h1 {
+      margin: 0 0 6px;
+      font-size: 2rem;
+      color: var(--text);
+    }
+    .hero p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      max-width: 70ch;
+    }
+
+    /* Tips blocks */
+    .tips {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 760px) {
+      .tips { grid-template-columns: 1fr 1fr; }
+    }
+    .tip {
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px dashed #2a3242;
+      background: #141a24;
+    }
+    .tip h4 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+    .tip p {
+      margin: 0;
+      color: var(--text);
+    }
+
+    /* Anchor offsets for sticky nav */
+    :target::before {
+      content: "";
+      display: block;
+      height: 64px;
+      margin: -64px 0 0;
+      visibility: hidden;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand">Scary Shawarma Kiosk — Unofficial Wiki</div>
+      <div class="nav-links">
+        <a href="#overview">Overview</a>
+        <a href="#gameplay">Gameplay</a>
+        <a href="#anomalies">Anomalies</a>
+        <a href="#endings">Endings</a>
+        <a href="#tips">Tips</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <!-- Hero -->
+    <section class="hero" id="overview">
+      <h1>Scary Shawarma Kiosk — Unofficial Wiki</h1>
+      <p>
+        Scary Shawarma Kiosk is a Roblox horror-management game where you run a late-night shawarma stand
+        while identifying and handling anomalies. Success depends on serving real customers, rejecting threats
+        at the right time, and passing inspections. The community is large and active, and mechanics evolve
+        with updates, so this page focuses on clear, practical guidance.
+      </p>
+    </section>
+
+    <!-- Gameplay -->
+    <section id="gameplay">
+      <h2>Gameplay</h2>
+      <p>
+        Balance speed and accuracy: prepare orders correctly for normal customers, and reject anomalies by
+        closing the shutters when required. Mistakes raise your error count. At <strong>2:00 AM on Fridays</strong>,
+        reaching <strong>five errors</strong> triggers an inspection event with specific escape handling. Many anomalies
+        are timing-based, meaning when you act is just as important as what you do.
+      </p>
+
+      <div class="tips" style="margin-top:14px;">
+        <div class="tip">
+          <h4>Core loop</h4>
+          <p>Serve normal customers fast and clean; identify anomalies and react with the correct action (serve, reject, or follow unique steps).</p>
+        </div>
+        <div class="tip">
+          <h4>Reject means shutters</h4>
+          <p>When a guide says “reject,” close the kiosk shutters. Some events require closing then reopening as part of the script.</p>
+        </div>
+        <div class="tip">
+          <h4>Error management</h4>
+          <p>Serving an anomaly or rejecting a safe customer adds errors. Five errors can trigger the Friday 2:00 AM inspection.</p>
+        </div>
+        <div class="tip">
+          <h4>Camera & vision</h4>
+          <p>Use cameras/night vision for tells (duplicates, passengers, vanishing in NV). Confirm before acting to avoid false rejects.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Anomalies -->
+    <section id="anomalies">
+      <h2>Anomalies</h2>
+      <p>
+        Anomalies fall into four categories: Dangerous (reject), Safe (serve), Special (follow unique rules),
+        and Environmental (acknowledge/wait). Some events are harmless scares unless you respond incorrectly.
+      </p>
+
+      <div class="grid" style="margin-top:12px;">
+        <!-- Dangerous -->
+        <div class="card">
+          <h3><span class="pill pill-danger">Dangerous — Reject</span></h3>
+          <ul class="list">
+            <li><span>Back Holes:</span> Visible holes on a customer’s back (often via rear camera). Reject.</li>
+            <li><span>Nightvision Missing:</span> Customer disappears in night vision. Reject.</li>
+            <li><span>CCTV Double:</span> A duplicate appears on camera. Reject.</li>
+            <li><span>CCTV Passenger:</span> Goblin-like rider attached to a customer’s back. Reject.</li>
+            <li><span>CCTV Screamer:</span> Sudden lunge on camera. Reject.</li>
+            <li><span>Red Light, Green Light Spirit:</span> Close shutters, reopen to pull him closer, he rushes forward; do not serve.</li>
+            <li><span>Santa (Merry Evening):</span> Distorted Santa variant. Reject.</li>
+            <li><span>The Twins:</span> Two blond women; one jerks unnaturally. Reject.</li>
+            <li><span>The Hacker:</span> Threatens to crash/disconnect. Reject.</li>
+          </ul>
+        </div>
+
+        <!-- Safe -->
+        <div class="card">
+          <h3><span class="pill pill-safe">Safe — Serve</span></h3>
+          <ul class="list">
+            <li><span>Karate Man:</span> Martial arts outfit, practicing moves. Serve.</li>
+            <li><span>Dancing Lady:</span> Dances in person (not just on camera). Serve.</li>
+            <li><span>Short Arms:</span> Unusual proportions but harmless. Serve.</li>
+            <li><span>Phone Lady:</span> Loud ringtone or screaming phone. Serve.</li>
+            <li><span>Drunk Guy:</span> Intoxicated behavior; follow normal serving/payment rules. Serve if valid.</li>
+          </ul>
+        </div>
+
+        <!-- Special -->
+        <div class="card">
+          <h3><span class="pill pill-special">Special — Unique rules</span></h3>
+          <ul class="list">
+            <li><span>Smiling Man:</span> Serve a soda, take his slip, place it on the counter; hide under the register if instructed.</li>
+            <li><span>Faceless Customer:</span> Serve normally; do not hover the cursor over the face hole.</li>
+            <li><span>Disturbing Old Man in Fog:</span> Seen far away; let him reach the kiosk, then close shutters to reject.</li>
+            <li><span>Booger Man:</span> Decline his “offer” and continue working; do not engage.</li>
+          </ul>
+        </div>
+
+        <!-- Environmental -->
+        <div class="card">
+          <h3><span class="pill pill-env">Environmental — Acknowledge/Wait</span></h3>
+          <ul class="list">
+            <li><span>Fog:</span> Harmless on its own; treat normally unless paired with a specific event.</li>
+            <li><span>Dancing Goblin:</span> Visual scare near kiosk; acknowledge only.</li>
+            <li><span>Fridge Goblin:</span> Goblin near fridge; acknowledge only.</li>
+            <li><span>Window Watcher:</span> Goblin staring through the window; no action needed.</li>
+            <li><span>The Meat:</span> Turn the grill off immediately and leave the kiosk as directed.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Endings -->
+    <section id="endings">
+      <h2>Endings</h2>
+      <p>
+        Endings depend on your error count, inspection outcomes, and how you handle specific anomalies. Some
+        are unlocked by following special steps (e.g., Smiling Man). Names and triggers may change with updates.
+      </p>
+
+      <div class="grid" style="margin-top:12px;">
+        <div class="card">
+          <h3>Good Ending</h3>
+          <p>Low errors, correct handling of anomalies, and successful completion of scripted events without inspection failure.</p>
+        </div>
+        <div class="card">
+          <h3>Bad Ending</h3>
+          <p>High error count, failed inspection, or critical mishandling of dangerous anomalies.</p>
+        </div>
+        <div class="card">
+          <h3>Secret/Variant Endings</h3>
+          <p>Triggered via unique interactions (e.g., Smiling Man sequence). Community discoveries evolve over time.</p>
+        </div>
+        <div class="card">
+          <h3>Neutral Ending</h3>
+          <p>Survive the shift with notable mistakes; pass but without optimal outcome.</p>
+        </div>
+        <div class="card">
+          <h3>Game Over</h3>
+          <p>Immediate failure from lethal anomaly or scripted death event.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tips -->
+    <section id="tips">
+      <h2>Tips</h2>
+      <div class="tips" style="margin-top:12px;">
+        <div class="tip">
+          <h4>Confirm before acting</h4>
+          <p>Use cameras and night vision to verify tells (duplicate, passenger, vanishing) to avoid false rejects.</p>
+        </div>
+        <div class="tip">
+          <h4>Reject = shutters</h4>
+          <p>Close the shutters to reject. Some events (Red Light, Green Light) require closing and reopening as part of the script.</p>
+        </div>
+        <div class="tip">
+          <h4>Friday inspection</h4>
+          <p>At 2:00 AM on Fridays, hitting five errors triggers inspection. Manage errors carefully to avoid it.</p>
+        </div>
+        <div class="tip">
+          <h4>Timing matters</h4>
+          <p>For the disturbing old man in fog, wait until he reaches the kiosk before rejecting. Closing early is counted as a mistake.</p>
+        </div>
+        <div class="tip">
+          <h4>Stay calm in scares</h4>
+          <p>Scripted scares (e.g., Red Light, Green Light rush) are harmless if handled correctly. Don’t panic-serve or panic-reject.</p>
+        </div>
+        <div class="tip">
+          <h4>Keep grill logic clean</h4>
+          <p>Prep ahead during quiet periods, but don’t overcook. Maintain a steady flow to avoid customer backlog.</p>
+        </div>
+      </div>
+      <footer>
+        This is a fan-made, unofficial wiki page. Game content and mechanics may change with updates.
+      </footer>
+    </section>
+  </main>
+</body>
+</html>
