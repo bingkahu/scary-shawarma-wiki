@@ -239,8 +239,8 @@
       <h2>Gameplay</h2>
       <p>
         Balance speed and accuracy: prepare orders correctly for normal customers, and reject anomalies by
-        closing the shutters when required. Mistakes raise your error count. At <strong>2:00 AM on Fridays</strong>,
-        reaching <strong>five errors</strong> triggers an inspection event with specific escape handling. Many anomalies
+        closing the shutters when required. Mistakes raise your error count. At <strong>2:00 AM on Fridays</strong>
+        <strong>an inspection event occurs with specific escape handling. Many anomalies
         are timing-based, meaning when you act is just as important as what you do.
       </p>
 
@@ -255,7 +255,7 @@
         </div>
         <div class="tip">
           <h4>Error management</h4>
-          <p>Serving an anomaly or rejecting a safe customer adds errors. Five errors can trigger the Friday 2:00 AM inspection.</p>
+          <p>Serving an anomaly or rejecting a safe customer adds errors. Five errors causes the inspector to "fix you" A.K.A killing you.</p>
         </div>
         <div class="tip">
           <h4>Camera & vision</h4>
@@ -277,14 +277,14 @@
         <div class="card">
           <h3><span class="pill pill-danger">Dangerous — Reject</span></h3>
           <ul class="list">
-            <li><span>Back Holes:</span> Visible holes on a customer’s back (often via rear camera). Reject.</li>
+            <li><span>Back Holes:</span> Visible holes or dots on a customer’s back. Reject.</li>
             <li><span>Nightvision Missing:</span> Customer disappears in night vision. Reject.</li>
             <li><span>CCTV Double:</span> A duplicate appears on camera. Reject.</li>
             <li><span>CCTV Passenger:</span> Goblin-like rider attached to a customer’s back. Reject.</li>
             <li><span>CCTV Screamer:</span> Sudden lunge on camera. Reject.</li>
             <li><span>Red Light, Green Light Spirit:</span> Close shutters, reopen to pull him closer, he rushes forward; do not serve.</li>
             <li><span>Santa (Merry Evening):</span> Distorted Santa variant. Reject.</li>
-            <li><span>The Twins:</span> Two blond women; one jerks unnaturally. Reject.</li>
+            <li><span>The Twins:</span> Two blond women; they jerk unnaturally. Reject.</li>
             <li><span>The Hacker:</span> Threatens to crash/disconnect. Reject.</li>
           </ul>
         </div>
@@ -305,7 +305,7 @@
         <div class="card">
           <h3><span class="pill pill-special">Special — Unique rules</span></h3>
           <ul class="list">
-            <li><span>Smiling Man:</span> Serve a soda, take his slip, place it on the counter; hide under the register if instructed.</li>
+            <li><span>Smiling Man:</span> Serve a soda, take his slip and put under the desk.</li>
             <li><span>Faceless Customer:</span> Serve normally; do not hover the cursor over the face hole.</li>
             <li><span>Disturbing Old Man in Fog:</span> Seen far away; let him reach the kiosk, then close shutters to reject.</li>
             <li><span>Booger Man:</span> Decline his “offer” and continue working; do not engage.</li>
@@ -332,6 +332,7 @@
       <p>
         Endings depend on your error count, inspection outcomes, and how you handle specific anomalies. Some
         are unlocked by following special steps (e.g., Smiling Man). Names and triggers may change with updates.
+        If you are playing endless mode it is, obviously, endless and does not have any ending.
       </p>
 
       <div class="grid" style="margin-top:12px;">
@@ -353,7 +354,7 @@
         </div>
         <div class="card">
           <h3>Game Over</h3>
-          <p>Immediate failure from lethal anomaly or scripted death event.</p>
+          <p>Immediate failure from lethal anomaly, reaching an error count of 5 or scripted death event.</p>
         </div>
       </div>
     </section>
@@ -368,19 +369,33 @@
         </div>
         <div class="tip">
           <h4>Reject = shutters</h4>
-          <p>Close the shutters to reject. Some events (Red Light, Green Light) require closing and reopening as part of the script.</p>
+          <p>Close the shutters to reject. Some events require closing and reopening as part of the script.</p>
         </div>
         <div class="tip">
           <h4>Friday inspection</h4>
-          <p>At 2:00 AM on Fridays, hitting five errors triggers inspection. Manage errors carefully to avoid it.</p>
-        </div>
+          <p>At 2:00 AM on Fridays the inspector visits. You must immediately exit the kiosk. Even a single glance can cause failure.</p>
+        </div
+
+
+
+
+
+
+
+
+          222222222222222222i
+
+
+
+
+        
         <div class="tip">
           <h4>Timing matters</h4>
           <p>For the disturbing old man in fog, wait until he reaches the kiosk before rejecting. Closing early is counted as a mistake.</p>
         </div>
         <div class="tip">
           <h4>Stay calm in scares</h4>
-          <p>Scripted scares (e.g., Red Light, Green Light rush) are harmless if handled correctly. Don’t panic-serve or panic-reject.</p>
+          <p>Scripted scares are harmless if handled correctly. Don’t panic-serve or panic-reject.</p>
         </div>
         <div class="tip">
           <h4>Keep grill logic clean</h4>
@@ -394,3 +409,4 @@
   </main>
 </body>
 </html>
+
