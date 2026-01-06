@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bingkahu.github.io/scary-shawarma-wiki/sitemap.xml
